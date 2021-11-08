@@ -1,4 +1,5 @@
-#Cube Sorter
+# Cube Sorter
+
 A tool to sort MTG set cubes into packs that will help to create a more retail pack like environment
 
 The reason I built this project is that I have a Magic the Gathering "cube" that I would like to get out now and then and use, but it requires some set up beforehad.
