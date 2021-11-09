@@ -8,7 +8,19 @@ If you're unfamiliar with the terminology, a "cube" is a collection of cards fro
 
 The problem that I ran into is that if I wanted to use my Innistrad cube it would require some amount of set up to best try to recreate an environment that would be like a retail experience, where you open sealed packs of cards. I wrote this script with the intention of being able to randomize my own packs while eventually being able to more replicate a more retail pack-like environment, such as there being no risk of duplicate cards in the pack.
 
-As of right now it's a simple JavaScript file that reads from the ISD.json file from MTGJSON.com, but it could potentially be used for other sets in the future with minimal tweeking.
+Currently it does the following:
+
+- Sorts cards into packs based on the specifications of the set provided
+- Display the name, color identity and cost of the card
+
+Features I would like to implement:
+- Making sure that when adding cards, particularly commons, that it's only adding one of each card to a pack.
+- Add a form to allow for custom packs, where you can control the number of commons, uncommons, rares/mythics, and DFCs if applicable
+- Allow for the forming of a custom number of packs, instead of limiting it to a hard number
+
+You can view a demo at:
+
+https://benparksphoto.com/mtg/
 
 # Getting Started with Create React App
 
