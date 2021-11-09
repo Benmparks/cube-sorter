@@ -57,7 +57,7 @@ function makePacks(setData) {
 		const card = cardSet[i];
 		
 		if(card.rarity === "common") {
-			if(card.frameEffects == "sunmoondfc") {
+			if(card.frameEffects == "sunmoondfc" && card.manaCost !== undefined) {
 				//Since this is a common, add it to the pool three times
 				for(let i = 0; i < numCubeDFCCommon; i++) {
 					cardPoolDFC.push(card);
@@ -71,7 +71,7 @@ function makePacks(setData) {
 		}
 		
 		if (card.rarity === "uncommon") {
-			if(card.frameEffects == "sunmoondfc") {
+			if(card.frameEffects == "sunmoondfc" && card.manaCost !== undefined) {
 				//Since this is a common, add it to the pool three times
 				for(let i = 0; i <  numCubeDFCUnCommon; i++) {
 					cardPoolDFC.push(card);
@@ -85,7 +85,7 @@ function makePacks(setData) {
 		}
 		
 		if (card.rarity === "rare" || card.rarity === "mythic") {
-			if(card.frameEffects == "sunmoondfc") {
+			if(card.frameEffects == "sunmoondfc" && card.manaCost !== undefined) {
 				//Since this is a common, add it to the pool three times
 				for(let i = 0; i <  numCubeDFCRareMythic; i++) {
 					cardPoolDFC.push(card);
@@ -187,7 +187,6 @@ function Box() {
 		.then(
 			(result) => {
 				setIsLoaded(true);
-				console.log(result);
 				setPacks(makePacks(result));
 		}).catch(error => {
 			console.log("Error!"); 
