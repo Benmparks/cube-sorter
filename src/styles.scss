@@ -1,6 +1,8 @@
+@use "font.css";
+
 $font-stack: Verdana, sans-serif;
 $primary-color: #333;
-$primary-size: 1.25rem;
+$primary-size: 1rem;
 $blue: blue;
 $red: red;
 $green: green;
@@ -11,83 +13,138 @@ body {
 	font-family: $font-stack;
 	color: $primary-color;
 	font-size: $primary-size;
+	background: #aaa;
 }
 
-.pack li {
-	position: relative;
+.box {
+	display: flex;
+	justify-content: center;
+}
+
+.pack-set {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.pack {
 	
-	&::after {
-		display: inline-block;
-		height: 10px;
-		width: 10px;
-		background: gray;
-		border: 1px solid #000;
-		position: absolute;
-		right: 100px;
-		content: ' ';
-	}
-	&.G::after {    
-		background: $green;
-	}
-
-	&.R::after {
-		background: $red;
-	}
-
-	&.U::after {
-		background: $blue;
-	}
-
-	&.B::after {
-		background: $black;
-	}
-
-	&.W::after {
-		background: $white;
-		border: 1px solid #000;
-	}
-
-	//friendly pairs
-
-	&.GW::after {
-		background-image: linear-gradient($green, $white);
+	width: 40vw;
+	border: 2px solid $primary-color;
+	border-radius: 15px;
+	margin: 20px;
+	padding: 15px;
+	box-shadow: 5px 5px 15px $red;
+	background: #fff;
+	transition: box-shadow 0.3s ease-in-out;
+	
+	&:nth-child(2) {
+		box-shadow: 5px 5px 15px $green
 	}
 	
-	&.UW::after {
-		background-image: linear-gradient($blue, $white);
+	&:nth-child(3) {
+		box-shadow: 5px 5px 15px $blue;
 	}
+	
+	&:nth-child(4) {
+		box-shadow: 5px 5px 15px $white;
+	}
+	
+	&:nth-child(5) {
+		box-shadow: 5px 5px 15px $black;
+	}
+	
+	&:nth-child(6) {
+		box-shadow: 5px 5px 15px $primary-color;
+	}
+	
+	&:hover {
+		box-shadow: 0px 0px 30px #ffdf00;
+	}	
 		
-	&.GR::after {
-		background-image: linear-gradient($green, $red);
+	.name {
+		margin-right: 20px;
 	}
 	
-	&.BR::after {
-		background-image: linear-gradient($black, $red);
-	}
+	li {
+		position: relative;
+		list-style-type: none;
 	
-	&.BU::after {
-		background-image: linear-gradient($black, $blue);
-	}
-	
-	//enemy pairs
+		&::before {
+			display: inline-block;
+			height: 10px;
+			width: 10px;
+			background: gray;
+			border: 1px solid #000;
+			position: absolute;
+			left: -20px;
+			top: 4px;
+			content: ' ';
+		}
+		&.G::before {    
+			background: $green;
+		}
 
-	&.BG::after {
-		background-image: linear-gradient($black, $green);
-	}
+		&.R::before {
+			background: $red;
+		}
 
-	&.RW::after {
-		background-image: linear-gradient($red, $white);
-	}
+		&.U::before {
+			background: $blue;
+		}
 
-	&.RU::after {
-		background-image: linear-gradient($red, $blue);
-	}
+		&.B::before {
+			background: $black;
+		}
+
+		&.W::before {
+			background: $white;
+			border: 1px solid #000;
+		}
+
+		//friendly pairs
+
+		&.GW::before {
+			background-image: linear-gradient($green, $white);
+		}
 	
-	&.BW::after {
-		background-image: linear-gradient($black, $white);
-	}
+		&.UW::before {
+			background-image: linear-gradient($blue, $white);
+		}
+		
+		&.GR::before {
+			background-image: linear-gradient($green, $red);
+		}
 	
-	&.GU::after {
-		background-image: linear-gradient($green, $blue);
+		&.BR::before {
+			background-image: linear-gradient($black, $red);
+		}
+	
+		&.BU::before {
+			background-image: linear-gradient($black, $blue);
+		}
+	
+		//enemy pairs
+
+		&.BG::before {
+			background-image: linear-gradient($black, $green);
+		}
+
+		&.RW::before {
+			background-image: linear-gradient($red, $white);
+		}
+
+		&.RU::before {
+			background-image: linear-gradient($red, $blue);
+		}
+	
+		&.BW::before {
+			background-image: linear-gradient($black, $white);
+		}
+	
+		&.GU::before {
+			background-image: linear-gradient($green, $blue);
+		}
 	}
 }

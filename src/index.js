@@ -142,16 +142,22 @@ function makePacks(setData) {
 	return box;
 }
 
+function ManaCost(props) {
+	
+	const costs = String(props.manaCost).replace(/[{}]/g, " ").split(" ").filter(n => n);
+	
+	return costs.map((cost, i) => <span className={"mtgicons icon-" + cost} key={i}><span className="path1"></span><span className="path2"></span></span>);
+}
+
 //React component for our cards
 function Card(props) {
 	
 	const cardClass = [props.colorIdentity, props.rarity];
-
-	return <li className={cardClass.join(' ')}>{props.cardName}</li>;
+	return <li className={cardClass.join(' ')}><span className="name">{props.cardName}</span><ManaCost manaCost={props.manaCost} /></li>;
 }
 
 //React component of our pack
-function Pack(data) {
+function Pack(data, packId) {
 	//TODO: Look up useReducer() and see if it's viable replacement for useState()
 	//Receiving warning but it's functioning right now, could be more elegant
 	const [cards, setCards] = useState([]);
@@ -162,8 +168,9 @@ function Pack(data) {
 	
 	return (
 			<div className="pack">
+				<h2>Pack {data.packId+1}</h2>
 				<ul>
-					{cards.map((card, i) => <Card cardName={card[0].cardName} colorIdentity={card[0].colorIdentity} rarity={card[0].rarity} key={i}/>)}
+					{cards.map((card, i) => <Card cardName={card[0].cardName} colorIdentity={card[0].colorIdentity} rarity={card[0].rarity} manaCost={card[0].manaCost} key={i}/>)}
 				</ul>
 			</div>
 	)
@@ -180,6 +187,7 @@ function Box() {
 		.then(
 			(result) => {
 				setIsLoaded(true);
+				console.log(result);
 				setPacks(makePacks(result));
 		}).catch(error => {
 			console.log("Error!"); 
@@ -193,7 +201,7 @@ function Box() {
 		return(
 		<div className="box">
 			<div className="pack-set">
-				{packs.map((pack, i) => <Pack data={pack} key={i} />)}
+				{packs.map((pack, i) => <Pack data={pack} key={i} packId={i} />)}
 			</div>
 		</div>
 		)

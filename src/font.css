@@ -1,20 +1,25 @@
 @font-face {
-  font-family: "mtg-icons";
-  src: url("fonts/icomoon.eot?fuo7rm");
-  src: url("fonts/icomoon.eot?fuo7rm#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf?fuo7rm") format("truetype"), url("fonts/icomoon.woff?fuo7rm") format("woff"), url("fonts/icomoon.svg?fuo7rm#icomoon") format("svg");
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
+	font-family: 'mtg-icons';
+    src:  url('fonts/icomoon.eot?fuo7rm');
+    src:  url('fonts/icomoon.eot?fuo7rm#iefix') format('embedded-opentype'),
+    	  url('fonts/icomoon.ttf?fuo7rm') format('truetype'),
+    	  url('fonts/icomoon.woff?fuo7rm') format('woff'),
+    	  url('fonts/icomoon.svg?fuo7rm#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
 }
-[class^=icon-], [class*=" icon-"] {
+
+[class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "mtg-icons" !important;
+  font-family: 'mtg-icons' !important;
   speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -24,227 +29,186 @@
   content: "\e900";
   color: rgb(203, 194, 191);
 }
-
 .icon-0 .path2:before {
   content: "\e901";
   margin-left: -1em;
   color: rgb(19, 12, 14);
 }
-
 .icon-1 .path1:before {
   content: "\e902";
   color: rgb(203, 194, 191);
 }
-
 .icon-1 .path2:before {
   content: "\e903";
   margin-left: -1em;
   color: rgb(19, 12, 14);
 }
-
 .icon-2 .path1:before {
   content: "\e904";
   color: rgb(203, 194, 191);
 }
-
 .icon-2 .path2:before {
   content: "\e905";
   margin-left: -1em;
   color: rgb(19, 12, 14);
 }
-
 .icon-3 .path1:before {
   content: "\e91a";
   color: rgb(203, 194, 191);
 }
-
 .icon-3 .path2:before {
   content: "\e91b";
   margin-left: -1em;
   color: rgb(19, 12, 14);
 }
-
 .icon-4 .path1:before {
   content: "\e91c";
   color: rgb(203, 194, 191);
 }
-
 .icon-4 .path2:before {
   content: "\e91d";
   margin-left: -1em;
   color: rgb(19, 12, 14);
 }
-
 .icon-5 .path1:before {
   content: "\e91e";
   color: rgb(203, 194, 191);
 }
-
 .icon-5 .path2:before {
   content: "\e91f";
   margin-left: -1em;
   color: rgb(19, 12, 14);
 }
-
 .icon-6 .path1:before {
   content: "\e920";
   color: rgb(203, 194, 191);
 }
-
 .icon-6 .path2:before {
   content: "\e921";
   margin-left: -1em;
   color: rgb(19, 12, 14);
 }
-
 .icon-7 .path1:before {
   content: "\e922";
   color: rgb(203, 194, 191);
 }
-
 .icon-7 .path2:before {
   content: "\e923";
   margin-left: -1em;
   color: rgb(19, 12, 14);
 }
-
 .icon-8 .path1:before {
   content: "\e924";
   color: rgb(203, 194, 191);
 }
-
 .icon-8 .path2:before {
   content: "\e925";
   margin-left: -1em;
   color: rgb(19, 12, 14);
 }
-
 .icon-9 .path1:before {
   content: "\e926";
   color: rgb(203, 194, 191);
 }
-
 .icon-9 .path2:before {
   content: "\e927";
   margin-left: -1em;
   color: rgb(19, 12, 14);
 }
-
 .icon-10 .path1:before {
   content: "\e928";
   color: rgb(202, 197, 192);
 }
-
 .icon-10 .path2:before {
   content: "\e929";
   margin-left: -1em;
   color: rgb(13, 15, 15);
 }
-
 .icon-11 .path1:before {
   content: "\e92a";
   color: rgb(202, 197, 192);
 }
-
 .icon-11 .path2:before {
   content: "\e92b";
   margin-left: -1em;
   color: rgb(13, 15, 15);
 }
-
 .icon-13 .path1:before {
   content: "\e92c";
   color: rgb(202, 197, 192);
 }
-
 .icon-13 .path2:before {
   content: "\e92d";
   margin-left: -1em;
   color: rgb(13, 15, 15);
 }
-
 .icon-14 .path1:before {
   content: "\e92e";
   color: rgb(202, 197, 192);
 }
-
 .icon-14 .path2:before {
   content: "\e92f";
   margin-left: -1em;
   color: rgb(13, 15, 15);
 }
-
 .icon-15 .path1:before {
   content: "\e930";
   color: rgb(202, 197, 192);
 }
-
 .icon-15 .path2:before {
   content: "\e931";
   margin-left: -1em;
   color: rgb(13, 15, 15);
 }
-
 .icon-16 .path1:before {
   content: "\e932";
   color: rgb(202, 197, 192);
 }
-
 .icon-16 .path2:before {
   content: "\e933";
   margin-left: -1em;
   color: rgb(13, 15, 15);
 }
-
 .icon-17 .path1:before {
   content: "\e934";
   color: rgb(202, 197, 192);
 }
-
 .icon-17 .path2:before {
   content: "\e935";
   margin-left: -1em;
   color: rgb(13, 15, 15);
 }
-
 .icon-18 .path1:before {
   content: "\e936";
   color: rgb(202, 197, 192);
 }
-
 .icon-18 .path2:before {
   content: "\e937";
   margin-left: -1em;
   color: rgb(13, 15, 15);
 }
-
 .icon-19 .path1:before {
   content: "\e938";
   color: rgb(202, 197, 192);
 }
-
 .icon-19 .path2:before {
   content: "\e939";
   margin-left: -1em;
   color: rgb(13, 15, 15);
 }
-
 .icon-20 .path1:before {
   content: "\e93a";
   color: rgb(202, 197, 192);
 }
-
 .icon-20 .path2:before {
   content: "\e93b";
   margin-left: -1em;
   color: rgb(13, 15, 15);
 }
-
 .icon-B .path1:before {
   content: "\e93c";
   color: rgb(203, 194, 191);
 }
-
 .icon-B .path2:before {
   content: "\e93d";
   margin-left: -1em;
@@ -255,7 +219,6 @@
   content: "\e942";
   color: rgb(155, 142, 138);
 }
-
 .icon-BP .path2:before {
   content: "\e943";
   margin-left: -1em;
@@ -266,240 +229,198 @@
   content: "\e948";
   color: rgb(204, 194, 192);
 }
-
 .icon-C .path2:before {
   content: "\e949";
   margin-left: -1em;
   color: rgb(19, 12, 14);
 }
-
 .icon-G .path1:before {
   content: "\e94a";
   color: rgb(155, 211, 174);
 }
-
 .icon-G .path2:before {
   content: "\e94b";
   margin-left: -1em;
   color: rgb(0, 22, 11);
 }
-
 .icon-GP .path1:before {
   content: "\e94c";
   color: rgb(128, 176, 146);
 }
-
 .icon-GP .path2:before {
   content: "\e94d";
   margin-left: -1em;
   color: rgb(35, 31, 32);
 }
-
 .icon-GU .path1:before {
   content: "\e94e";
   color: rgb(155, 211, 174);
 }
-
 .icon-GU .path2:before {
   content: "\e94f";
   margin-left: -1em;
   color: rgb(170, 224, 250);
 }
-
 .icon-GU .path3:before {
   content: "\e950";
   margin-left: -1em;
   color: rgb(6, 25, 34);
 }
-
 .icon-GU .path4:before {
   content: "\e951";
   margin-left: -1em;
   color: rgb(0, 22, 11);
 }
-
 .icon-GW .path1:before {
   content: "\e952";
   color: rgb(155, 211, 174);
 }
-
 .icon-GW .path2:before {
   content: "\e953";
   margin-left: -1em;
   color: rgb(255, 251, 213);
 }
-
 .icon-GW .path3:before {
   content: "\e954";
   margin-left: -1em;
   color: rgb(33, 29, 21);
 }
-
 .icon-GW .path4:before {
   content: "\e955";
   margin-left: -1em;
   color: rgb(0, 22, 11);
 }
-
 .icon-R .path1:before {
   content: "\e956";
   color: rgb(249, 170, 143);
 }
-
 .icon-R .path2:before {
   content: "\e957";
   margin-left: -1em;
   color: rgb(32, 0, 0);
 }
-
 .icon-RG .path1:before {
   content: "\e958";
   color: rgb(249, 170, 143);
 }
-
 .icon-RG .path2:before {
   content: "\e959";
   margin-left: -1em;
   color: rgb(163, 192, 149);
 }
-
 .icon-RG .path3:before {
   content: "\e95a";
   margin-left: -1em;
   color: rgb(32, 0, 0);
 }
-
 .icon-RG .path4:before {
   content: "\e95b";
   margin-left: -1em;
   color: rgb(0, 22, 11);
 }
-
 .icon-RP .path1:before {
   content: "\e95c";
   color: rgb(222, 129, 102);
 }
-
 .icon-RP .path2:before {
   content: "\e95d";
   margin-left: -1em;
   color: rgb(35, 31, 32);
 }
-
 .icon-RW .path1:before {
   content: "\e95e";
   color: rgb(249, 170, 143);
 }
-
 .icon-RW .path2:before {
   content: "\e95f";
   margin-left: -1em;
   color: rgb(248, 246, 216);
 }
-
 .icon-RW .path3:before {
   content: "\e960";
   margin-left: -1em;
   color: rgb(33, 29, 21);
 }
-
 .icon-RW .path4:before {
   content: "\e961";
   margin-left: -1em;
   color: rgb(32, 0, 0);
 }
-
 .icon-S .path1:before {
   content: "\e962";
   color: rgb(201, 196, 190);
 }
-
 .icon-S .path2:before {
   content: "\e963";
   margin-left: -1em;
   color: rgb(13, 15, 15);
 }
-
 .icon-S .path3:before {
   content: "\e964";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-
 .icon-S .path4:before {
   content: "\e965";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-
 .icon-S .path5:before {
   content: "\e966";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-
 .icon-S .path6:before {
   content: "\e967";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-
 .icon-S .path7:before {
   content: "\e968";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-
 .icon-S .path8:before {
   content: "\e969";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-
 .icon-S .path9:before {
   content: "\e96a";
   margin-left: -1em;
   color: rgb(255, 255, 255);
 }
-
 .icon-U .path1:before {
   content: "\e96b";
   color: rgb(170, 224, 250);
 }
-
 .icon-U .path2:before {
   content: "\e96c";
   margin-left: -1em;
   color: rgb(6, 25, 34);
 }
-
 .icon-UP .path1:before {
   content: "\e971";
   color: rgb(142, 187, 209);
 }
-
 .icon-UP .path2:before {
   content: "\e972";
   margin-left: -1em;
   color: rgb(35, 31, 32);
 }
-
 .icon-W .path1:before {
   content: "\e977";
   color: rgb(255, 251, 213);
 }
-
 .icon-W .path2:before {
   content: "\e978";
   margin-left: -1em;
   color: rgb(33, 29, 21);
 }
-
 .icon-WP .path1:before {
   content: "\e97d";
   color: rgb(233, 227, 177);
 }
-
 .icon-WP .path2:before {
   content: "\e97e";
   margin-left: -1em;
@@ -510,7 +431,6 @@
   content: "\e983";
   color: rgb(202, 197, 192);
 }
-
 .icon-X .path2:before {
   content: "\e984";
   margin-left: -1em;
@@ -724,116 +644,4 @@
   color: rgb(19, 12, 14);
 }
 */
-body {
-  font-family: Verdana, sans-serif;
-  color: #333;
-  font-size: 1rem;
-  background: #aaa;
-}
 
-.box {
-  display: flex;
-  justify-content: center;
-}
-
-.pack-set {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.pack {
-  width: 40vw;
-  border: 2px solid #333;
-  border-radius: 15px;
-  margin: 20px;
-  padding: 15px;
-  box-shadow: 5px 5px 15px red;
-  background: #fff;
-  transition: box-shadow 0.3s ease-in-out;
-}
-.pack:nth-child(2) {
-  box-shadow: 5px 5px 15px green;
-}
-.pack:nth-child(3) {
-  box-shadow: 5px 5px 15px blue;
-}
-.pack:nth-child(4) {
-  box-shadow: 5px 5px 15px white;
-}
-.pack:nth-child(5) {
-  box-shadow: 5px 5px 15px black;
-}
-.pack:nth-child(6) {
-  box-shadow: 5px 5px 15px #333;
-}
-.pack:hover {
-  box-shadow: 0px 0px 30px #ffdf00;
-}
-.pack .name {
-  margin-right: 20px;
-}
-.pack li {
-  position: relative;
-  list-style-type: none;
-}
-.pack li::before {
-  display: inline-block;
-  height: 10px;
-  width: 10px;
-  background: gray;
-  border: 1px solid #000;
-  position: absolute;
-  left: -20px;
-  top: 4px;
-  content: " ";
-}
-.pack li.G::before {
-  background: green;
-}
-.pack li.R::before {
-  background: red;
-}
-.pack li.U::before {
-  background: blue;
-}
-.pack li.B::before {
-  background: black;
-}
-.pack li.W::before {
-  background: white;
-  border: 1px solid #000;
-}
-.pack li.GW::before {
-  background-image: linear-gradient(green, white);
-}
-.pack li.UW::before {
-  background-image: linear-gradient(blue, white);
-}
-.pack li.GR::before {
-  background-image: linear-gradient(green, red);
-}
-.pack li.BR::before {
-  background-image: linear-gradient(black, red);
-}
-.pack li.BU::before {
-  background-image: linear-gradient(black, blue);
-}
-.pack li.BG::before {
-  background-image: linear-gradient(black, green);
-}
-.pack li.RW::before {
-  background-image: linear-gradient(red, white);
-}
-.pack li.RU::before {
-  background-image: linear-gradient(red, blue);
-}
-.pack li.BW::before {
-  background-image: linear-gradient(black, white);
-}
-.pack li.GU::before {
-  background-image: linear-gradient(green, blue);
-}
-
-/*# sourceMappingURL=style.css.map */
