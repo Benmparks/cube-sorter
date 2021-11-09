@@ -4,7 +4,6 @@ import {useEffect,useState} from 'react';
 import './style.css';
 	
 function makePacks(setData) {
-	console.log(setData);
 	
 	//Set up our card template from which we will build all our cards
 	//Card JavaScript object
@@ -38,9 +37,7 @@ function makePacks(setData) {
 			cardSet.push(newCard);
 		}
 	}
-	
-	console.log(cardSet);
-		
+			
 	//build card pools these will be the arrays that we pull from when building packs
 	//TODO: these are hard coded values for now, but let's make these to eventually be submittable values
 	const numCubeSFCCommon = 3;
@@ -161,9 +158,7 @@ function Pack(data) {
 	
 	useEffect(() => {
 		setCards(data.data);
-	}, [])
-
-	console.log(cards);
+	})
 	
 	return (
 			<div className="pack">
