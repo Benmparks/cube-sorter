@@ -18,6 +18,10 @@ Features I would like to implement:
 - Add a form to allow for custom packs, where you can control the number of commons, uncommons, rares/mythics, and DFCs if applicable
 - Allow for the forming of a custom number of packs, instead of limiting it to a hard number
 
+You can view a demo at:
+
+https://benparksphoto.com/mtg/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
