@@ -60,8 +60,8 @@ body {
 .pack li.BW::after {
   background-image: linear-gradient(black, white);
 }
-.pack li.UG::after {
-  background-image: linear-gradient(blue, green);
+.pack li.GU::after {
+  background-image: linear-gradient(green, blue);
 }
 
 /*# sourceMappingURL=style.css.map */
