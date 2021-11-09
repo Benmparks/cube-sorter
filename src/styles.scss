@@ -1,0 +1,93 @@
+$font-stack: Verdana, sans-serif;
+$primary-color: #333;
+$primary-size: 1.25rem;
+$blue: blue;
+$red: red;
+$green: green;
+$white: white;
+$black: black;
+
+body {
+	font-family: $font-stack;
+	color: $primary-color;
+	font-size: $primary-size;
+}
+
+.pack li {
+	position: relative;
+	
+	&::after {
+		display: inline-block;
+		height: 10px;
+		width: 10px;
+		background: gray;
+		border: 1px solid #000;
+		position: absolute;
+		right: 100px;
+		content: ' ';
+	}
+	&.G::after {    
+		background: $green;
+	}
+
+	&.R::after {
+		background: $red;
+	}
+
+	&.U::after {
+		background: $blue;
+	}
+
+	&.B::after {
+		background: $black;
+	}
+
+	&.W::after {
+		background: $white;
+		border: 1px solid #000;
+	}
+
+	//friendly pairs
+
+	&.GW::after {
+		background-image: linear-gradient($green, $white);
+	}
+	
+	&.UW::after {
+		background-image: linear-gradient($blue, $white);
+	}
+		
+	&.GR::after {
+		background-image: linear-gradient($green, $red);
+	}
+	
+	&.BR::after {
+		background-image: linear-gradient($black, $red);
+	}
+	
+	&.BU::after {
+		background-image: linear-gradient($black, $blue);
+	}
+	
+	//enemy pairs
+
+	&.BG::after {
+		background-image: linear-gradient($black, $green);
+	}
+
+	&.RW::after {
+		background-image: linear-gradient($red, $white);
+	}
+
+	&.RU::after {
+		background-image: linear-gradient($red, $blue);
+	}
+	
+	&.BW::after {
+		background-image: linear-gradient($black, $white);
+	}
+	
+	&.UG::after {
+		background-image: linear-gradient($blue, $green);
+	}
+}

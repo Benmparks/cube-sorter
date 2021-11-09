@@ -11,7 +11,7 @@ function makePacks(setData) {
 	const CardObj = function(data) {
 		const cardName = data.name;
 		const colors = data.colors;
-		const colorIdentity = data.colorIdentity;
+		const colorIdentity = String(data.colorIdentity).replaceAll(',','');
 		const convertedManaCost = data.convertedManaCost;
 		const frameEffects = data.frameEffects;
 		const manaCost = data.manaCost;
