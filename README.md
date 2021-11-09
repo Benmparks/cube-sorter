@@ -1,3 +1,15 @@
+# Cube Sorter
+
+A tool to sort MTG set cubes into packs that will help to create a more retail pack like environment
+
+The reason I built this project is that I have a Magic the Gathering "cube" that I would like to get out now and then and use, but it requires some set up beforehad.
+
+If you're unfamiliar with the terminology, a "cube" is a collection of cards from collectible card games that you use to be able to repeatedly limited formats. This may be "drafting" which involves passing around packs of cards around a table and you choosing one before passing it to your right or left, or "sealed" which involves you receiving a pool of 6 packs of 15 cards and building your deck from that. Most cubes are singleton, which means that it has one of each card, but this one is different in that it looks to emulate the environment of playing this format specificially.
+
+The problem that I ran into is that if I wanted to use my Innistrad cube it would require some amount of set up to best try to recreate an environment that would be like a retail experience, where you open sealed packs of cards. I wrote this script with the intention of being able to randomize my own packs while eventually being able to more replicate a more retail pack-like environment, such as there being no risk of duplicate cards in the pack.
+
+As of right now it's a simple JavaScript file that reads from the ISD.json file from MTGJSON.com, but it could potentially be used for other sets in the future with minimal tweeking.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
