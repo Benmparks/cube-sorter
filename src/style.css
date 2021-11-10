@@ -735,15 +735,49 @@ body {
   display: flex;
   justify-content: center;
 }
-
-.pack-set {
+.box h1 {
+  margin-bottom: 5px;
+}
+.box .form-container {
+  width: 75%;
+  color: #333;
+  background: #ccc;
+  padding: 0 20px 20px;
+  border: 2px solid #333;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.box .form-container p {
+  margin: 5px 0;
+}
+.box .form-container p:last-of-type {
+  margin-bottom: 20px;
+}
+.box .form-container button {
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 2rem;
+}
+.box .pack-set {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
-
-.pack {
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.box .pack-set .pack {
   width: 40vw;
   border: 2px solid #333;
   border-radius: 15px;
@@ -753,32 +787,32 @@ body {
   background: #fff;
   transition: box-shadow 0.3s ease-in-out;
 }
-.pack:nth-child(2) {
+.box .pack-set .pack:nth-child(2) {
   box-shadow: 5px 5px 15px green;
 }
-.pack:nth-child(3) {
+.box .pack-set .pack:nth-child(3) {
   box-shadow: 5px 5px 15px blue;
 }
-.pack:nth-child(4) {
+.box .pack-set .pack:nth-child(4) {
   box-shadow: 5px 5px 15px white;
 }
-.pack:nth-child(5) {
+.box .pack-set .pack:nth-child(5) {
   box-shadow: 5px 5px 15px black;
 }
-.pack:nth-child(6) {
+.box .pack-set .pack:nth-child(6) {
   box-shadow: 5px 5px 15px #333;
 }
-.pack:hover {
+.box .pack-set .pack:hover {
   box-shadow: 0px 0px 30px #ffdf00;
 }
-.pack .name {
+.box .pack-set .pack .name {
   margin-right: 20px;
 }
-.pack li {
+.box .pack-set .pack li {
   position: relative;
   list-style-type: none;
 }
-.pack li::before {
+.box .pack-set .pack li::before {
   display: inline-block;
   height: 10px;
   width: 10px;
@@ -789,50 +823,50 @@ body {
   top: 4px;
   content: " ";
 }
-.pack li.G::before {
+.box .pack-set .pack li.G::before {
   background: green;
 }
-.pack li.R::before {
+.box .pack-set .pack li.R::before {
   background: red;
 }
-.pack li.U::before {
+.box .pack-set .pack li.U::before {
   background: blue;
 }
-.pack li.B::before {
+.box .pack-set .pack li.B::before {
   background: black;
 }
-.pack li.W::before {
+.box .pack-set .pack li.W::before {
   background: white;
   border: 1px solid #000;
 }
-.pack li.GW::before {
+.box .pack-set .pack li.GW::before {
   background-image: linear-gradient(green, white);
 }
-.pack li.UW::before {
+.box .pack-set .pack li.UW::before {
   background-image: linear-gradient(blue, white);
 }
-.pack li.GR::before {
+.box .pack-set .pack li.GR::before {
   background-image: linear-gradient(green, red);
 }
-.pack li.BR::before {
+.box .pack-set .pack li.BR::before {
   background-image: linear-gradient(black, red);
 }
-.pack li.BU::before {
+.box .pack-set .pack li.BU::before {
   background-image: linear-gradient(black, blue);
 }
-.pack li.BG::before {
+.box .pack-set .pack li.BG::before {
   background-image: linear-gradient(black, green);
 }
-.pack li.RW::before {
+.box .pack-set .pack li.RW::before {
   background-image: linear-gradient(red, white);
 }
-.pack li.RU::before {
+.box .pack-set .pack li.RU::before {
   background-image: linear-gradient(red, blue);
 }
-.pack li.BW::before {
+.box .pack-set .pack li.BW::before {
   background-image: linear-gradient(black, white);
 }
-.pack li.GU::before {
+.box .pack-set .pack li.GU::before {
   background-image: linear-gradient(green, blue);
 }
 

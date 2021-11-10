@@ -8,6 +8,7 @@ $red: red;
 $green: green;
 $white: white;
 $black: black;
+$border-radius: 15px;
 
 body {
 	font-family: $font-stack;
@@ -19,132 +20,177 @@ body {
 .box {
 	display: flex;
 	justify-content: center;
-}
-
-.pack-set {
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-}
-
-.pack {
 	
-	width: 40vw;
-	border: 2px solid $primary-color;
-	border-radius: 15px;
-	margin: 20px;
-	padding: 15px;
-	box-shadow: 5px 5px 15px $red;
-	background: #fff;
-	transition: box-shadow 0.3s ease-in-out;
-	
-	&:nth-child(2) {
-		box-shadow: 5px 5px 15px $green
+	h1 {
+		margin-bottom: 5px;
+			
 	}
 	
-	&:nth-child(3) {
-		box-shadow: 5px 5px 15px $blue;
-	}
-	
-	&:nth-child(4) {
-		box-shadow: 5px 5px 15px $white;
-	}
-	
-	&:nth-child(5) {
-		box-shadow: 5px 5px 15px $black;
-	}
-	
-	&:nth-child(6) {
-		box-shadow: 5px 5px 15px $primary-color;
-	}
-	
-	&:hover {
-		box-shadow: 0px 0px 30px #ffdf00;
-	}	
+	.form-container {
+		width: 75%;
+		color: $primary-color;
+		background: #ccc;
+		padding: 0 20px 20px;
+		border: 2px solid $primary-color;
+		border-radius: $border-radius;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
 		
-	.name {
-		margin-right: 20px;
+		p {
+			margin: 5px 0;
+			
+			&:last-of-type {
+				margin-bottom: 20px;
+			}
+			
+		}
+	
+		button {
+			padding: 20px;
+			border-radius: $border-radius;
+			font-size: 2rem;
+		}
 	}
+
+	.pack-set {
+			width: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			animation: fadeInAnimation ease 3s;
+    		animation-iteration-count: 1;
+    		animation-fill-mode: forwards;
+    		
+    		@keyframes fadeInAnimation {
+    			0% {
+        			opacity: 0;
+    			}
+				100% {
+					opacity: 1;
+					 }
+				}
+
+		.pack {
 	
-	li {
-		position: relative;
-		list-style-type: none;
+			width: 40vw;
+			border: 2px solid $primary-color;
+			border-radius: $border-radius;
+			margin: 20px;
+			padding: 15px;
+			box-shadow: 5px 5px 15px $red;
+			background: #fff;
+			transition: box-shadow 0.3s ease-in-out;
 	
-		&::before {
-			display: inline-block;
-			height: 10px;
-			width: 10px;
-			background: gray;
-			border: 1px solid #000;
-			position: absolute;
-			left: -20px;
-			top: 4px;
-			content: ' ';
-		}
-		&.G::before {    
-			background: $green;
-		}
-
-		&.R::before {
-			background: $red;
-		}
-
-		&.U::before {
-			background: $blue;
-		}
-
-		&.B::before {
-			background: $black;
-		}
-
-		&.W::before {
-			background: $white;
-			border: 1px solid #000;
-		}
-
-		//friendly pairs
-
-		&.GW::before {
-			background-image: linear-gradient($green, $white);
-		}
+			&:nth-child(2) {
+				box-shadow: 5px 5px 15px $green
+			}
 	
-		&.UW::before {
-			background-image: linear-gradient($blue, $white);
-		}
+			&:nth-child(3) {
+				box-shadow: 5px 5px 15px $blue;
+			}
+	
+			&:nth-child(4) {
+				box-shadow: 5px 5px 15px $white;
+			}
+	
+			&:nth-child(5) {
+				box-shadow: 5px 5px 15px $black;
+			}
+	
+			&:nth-child(6) {
+				box-shadow: 5px 5px 15px $primary-color;
+			}
+	
+			&:hover {
+				box-shadow: 0px 0px 30px #ffdf00;
+			}	
 		
-		&.GR::before {
-			background-image: linear-gradient($green, $red);
-		}
+			.name {
+				margin-right: 20px;
+			}
 	
-		&.BR::before {
-			background-image: linear-gradient($black, $red);
-		}
+			li {
+				position: relative;
+				list-style-type: none;
 	
-		&.BU::before {
-			background-image: linear-gradient($black, $blue);
-		}
-	
-		//enemy pairs
+				&::before {
+					display: inline-block;
+					height: 10px;
+					width: 10px;
+					background: gray;
+					border: 1px solid #000;
+					position: absolute;
+					left: -20px;
+					top: 4px;
+					content: ' ';
+				}
+				&.G::before {    
+					background: $green;
+				}
 
-		&.BG::before {
-			background-image: linear-gradient($black, $green);
-		}
+				&.R::before {
+					background: $red;
+				}
 
-		&.RW::before {
-			background-image: linear-gradient($red, $white);
-		}
+				&.U::before {
+					background: $blue;
+				}
 
-		&.RU::before {
-			background-image: linear-gradient($red, $blue);
-		}
+				&.B::before {
+					background: $black;
+				}
+
+				&.W::before {
+					background: $white;
+					border: 1px solid #000;
+				}
+
+				//friendly pairs
+
+				&.GW::before {
+					background-image: linear-gradient($green, $white);
+				}
 	
-		&.BW::before {
-			background-image: linear-gradient($black, $white);
-		}
+				&.UW::before {
+					background-image: linear-gradient($blue, $white);
+				}
+		
+				&.GR::before {
+					background-image: linear-gradient($green, $red);
+				}
 	
-		&.GU::before {
-			background-image: linear-gradient($green, $blue);
+				&.BR::before {
+					background-image: linear-gradient($black, $red);
+				}
+	
+				&.BU::before {
+					background-image: linear-gradient($black, $blue);
+				}
+	
+				//enemy pairs
+
+				&.BG::before {
+					background-image: linear-gradient($black, $green);
+				}
+
+				&.RW::before {
+					background-image: linear-gradient($red, $white);
+				}
+
+				&.RU::before {
+					background-image: linear-gradient($red, $blue);
+				}
+	
+				&.BW::before {
+					background-image: linear-gradient($black, $white);
+				}
+	
+				&.GU::before {
+					background-image: linear-gradient($green, $blue);
+				}
+			}
 		}
 	}
 }
+
