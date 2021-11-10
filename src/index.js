@@ -62,7 +62,7 @@ function makePacks(setData) {
 				for(let i = 0; i < numCubeDFCCommon; i++) {
 					cardPoolDFC.push(card);
 				}
-			} else {
+			} else if (card.manaCost !== undefined) {
 				//Since this is a common, add it to the pool three times
 				for(let i = 0; i <numCubeSFCCommon; i++) {
 					cardPoolSFCCommon.push(card);
@@ -76,7 +76,7 @@ function makePacks(setData) {
 				for(let i = 0; i <  numCubeDFCUnCommon; i++) {
 					cardPoolDFC.push(card);
 				}
-			} else {
+			} else if (card.manaCost !== undefined) {
 				//Since this is a common, add it to the pool three times
 				for(let i = 0; i < numCubeSFCUnCommon; i++) {
 					cardPoolSFCUnCommon.push(card);
@@ -90,7 +90,7 @@ function makePacks(setData) {
 				for(let i = 0; i <  numCubeDFCRareMythic; i++) {
 					cardPoolDFC.push(card);
 				}
-			} else {
+			} else if (card.manaCost !== undefined) {
 				//Since this is a common, add it to the pool three times
 				for(let i = 0; i < numCubeSFCRareMythic; i++) {
 					cardPoolSFCRareMythic.push(card);
