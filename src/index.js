@@ -104,9 +104,6 @@ function makePools(setData) {
 		}
 	}
 	
-	console.log(typeof cardPoolSFCCommon);
-	console.log(cardPoolSFCUnCommon);
-	
 	sessionStorage.setItem('cardPoolSFCCommon', JSON.stringify(cardPoolSFCCommon));
 	sessionStorage.setItem('cardPoolSFCUnCommon', JSON.stringify(cardPoolSFCUnCommon));
 	sessionStorage.setItem('cardPoolSFCRareMythic', JSON.stringify(cardPoolSFCRareMythic));
@@ -123,11 +120,31 @@ function makePacks(num) {
 	let numUnCommons = sessionStorage.getItem('numUnCommons');
 	let numRareMythic = sessionStorage.getItem('numRareMythic');
 	let numDFC = sessionStorage.getItem('numDFC');
-	let box = JSON.parse(sessionStorage.getItem('box'));
+		
+	if(sessionStorage.getItem('box') === null) {
+		var box = [];
+	} else {
+		var box = JSON.parse(sessionStorage.getItem('box'));
+	}
 	
 	//How many packs to make in the box
 	const numPacks = num;
-			
+	
+	//Determine max number of packs
+	//Maximum number of packs possible
+	if(sessionStorage.getItem('box') === null) {
+		let maxPacksArr = []
+		maxPacksArr.push(Math.trunc(cardPoolSFCCommon.length/numCommons));
+		maxPacksArr.push(Math.trunc(cardPoolSFCUnCommon.length/numUnCommons));
+		maxPacksArr.push(Math.trunc(cardPoolSFCRareMythic.length/numRareMythic));
+		if(numDFC === null) maxPacksArr.push(Math.trunc(cardPoolDFC.length/numDFC));
+		var maxPacks = Math.min.apply(Math, maxPacksArr);
+		sessionStorage.setItem('maxPacks', JSON.stringify(maxPacks));
+	} else {
+		var maxPacks = JSON.parse(sessionStorage.getItem('maxPacks'));
+	}	
+	
+	//Function that pulls a random card	
 	function randomCard(array) {
 		let i = (Math.random() * array.length);
 		return array.splice(i, 1);
