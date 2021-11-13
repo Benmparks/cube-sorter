@@ -23,3 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 src/style.css.map
 package.json
+src/RTR.json

@@ -8,13 +8,46 @@ $red: red;
 $green: green;
 $white: white;
 $black: black;
+$light-gray: #666;
+$gold: #ffdf00;
 $border-radius: 15px;
+$small: 576px;
+$medium: 820px;
+$large: 1300px;
+
 
 body {
 	font-family: $font-stack;
 	color: $primary-color;
 	font-size: $primary-size;
 	background: #aaa;
+}
+
+.visually-hidden {
+	position: absolute;
+	left: -9999px;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	
+	@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+		 }
+	}
+}
+
+button {
+	padding: 20px;
+	border-radius: $border-radius;
+	font-size: 2rem;
+	margin: 0 20%;
 }
 
 .box {
@@ -45,11 +78,20 @@ body {
 			}
 			
 		}
-	
-		button {
-			padding: 20px;
-			border-radius: $border-radius;
-			font-size: 2rem;
+		
+		.numPacks {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+		
+			.packSelect {
+				margin-bottom: 20px;
+				
+				.packNumSelect {
+					padding: 2px;
+					margin-left: 10px;
+				}
+			}
 		}
 	}
 
@@ -61,15 +103,6 @@ body {
 			animation: fadeInAnimation ease 3s;
     		animation-iteration-count: 1;
     		animation-fill-mode: forwards;
-    		
-    		@keyframes fadeInAnimation {
-    			0% {
-        			opacity: 0;
-    			}
-				100% {
-					opacity: 1;
-					 }
-				}
 
 		.pack {
 	
@@ -78,32 +111,44 @@ body {
 			border-radius: $border-radius;
 			margin: 20px;
 			padding: 15px;
-			box-shadow: 5px 5px 15px $red;
 			background: #fff;
 			transition: box-shadow 0.3s ease-in-out;
-	
-			&:nth-child(2) {
+			
+			@media (max-width: $medium) {
+				width: 80vw;
+			}
+			
+			@media (min-width: $large) {
+				width: 27vw;
+			}
+			
+			
+			&:nth-child(6n) {
+				box-shadow: 5px 5px 15px $red;
+			}
+			
+			&:nth-child(6n+1) {
 				box-shadow: 5px 5px 15px $green
 			}
 	
-			&:nth-child(3) {
-				box-shadow: 5px 5px 15px $blue;
-			}
-	
-			&:nth-child(4) {
-				box-shadow: 5px 5px 15px $white;
-			}
-	
-			&:nth-child(5) {
+			&:nth-child(6n+2) {
 				box-shadow: 5px 5px 15px $black;
 			}
 	
-			&:nth-child(6) {
-				box-shadow: 5px 5px 15px $primary-color;
+			&:nth-child(6n+3) {
+				box-shadow: 5px 5px 15px $blue;
+			}
+	
+			&:nth-child(6n+4) {
+				box-shadow: 5px 5px 15px $white;				
+			}
+	
+			&:nth-child(6n+5) {
+				box-shadow: 5px 5px 15px $light-gray;
 			}
 	
 			&:hover {
-				box-shadow: 0px 0px 30px #ffdf00;
+				box-shadow: 0px 0px 30px $gold;
 			}	
 		
 			.name {
@@ -189,8 +234,45 @@ body {
 				&.GU::before {
 					background-image: linear-gradient($green, $blue);
 				}
+				
+				//Friendly Shards
+				&.GWU::before, &.GUW::before {
+					background-image: linear-gradient($green, $white, $blue);
+				}
+				
+				&.BRU::before {
+					background-image: linear-gradient($black, $red, $blue);
+				}
+				
+				&.GRW::before {
+					background-image: linear-gradient($red, $green, $white);
+				}
+				&.BGR::before {
+					background-image: linear-gradient($black, $green, $red);
+				}
+				&.BUW::before {
+					background-image: linear-gradient($black, $blue, $white);
+				}
 			}
 		}
 	}
 }
 
+.add-more, .packForm {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+		
+		.packForm {
+			flex-direction: row;
+			align-content: space-between;
+			
+			button {
+				margin: 0 20px;
+			}
+		}
+		
+		span {
+			text-align: center;
+		}
+}

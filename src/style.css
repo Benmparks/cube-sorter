@@ -731,6 +731,32 @@ body {
   background: #aaa;
 }
 
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+button {
+  padding: 20px;
+  border-radius: 15px;
+  font-size: 2rem;
+  margin: 0 20%;
+}
+
 .box {
   display: flex;
   justify-content: center;
@@ -755,10 +781,17 @@ body {
 .box .form-container p:last-of-type {
   margin-bottom: 20px;
 }
-.box .form-container button {
-  padding: 20px;
-  border-radius: 15px;
-  font-size: 2rem;
+.box .form-container .numPacks {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.box .form-container .numPacks .packSelect {
+  margin-bottom: 20px;
+}
+.box .form-container .numPacks .packSelect .packNumSelect {
+  padding: 2px;
+  margin-left: 10px;
 }
 .box .pack-set {
   width: 100%;
@@ -769,38 +802,42 @@ body {
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
-@keyframes fadeInAnimation {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 .box .pack-set .pack {
   width: 40vw;
   border: 2px solid #333;
   border-radius: 15px;
   margin: 20px;
   padding: 15px;
-  box-shadow: 5px 5px 15px red;
   background: #fff;
   transition: box-shadow 0.3s ease-in-out;
 }
-.box .pack-set .pack:nth-child(2) {
+@media (max-width: 820px) {
+  .box .pack-set .pack {
+    width: 80vw;
+  }
+}
+@media (min-width: 1300px) {
+  .box .pack-set .pack {
+    width: 27vw;
+  }
+}
+.box .pack-set .pack:nth-child(6n) {
+  box-shadow: 5px 5px 15px red;
+}
+.box .pack-set .pack:nth-child(6n+1) {
   box-shadow: 5px 5px 15px green;
 }
-.box .pack-set .pack:nth-child(3) {
-  box-shadow: 5px 5px 15px blue;
-}
-.box .pack-set .pack:nth-child(4) {
-  box-shadow: 5px 5px 15px white;
-}
-.box .pack-set .pack:nth-child(5) {
+.box .pack-set .pack:nth-child(6n+2) {
   box-shadow: 5px 5px 15px black;
 }
-.box .pack-set .pack:nth-child(6) {
-  box-shadow: 5px 5px 15px #333;
+.box .pack-set .pack:nth-child(6n+3) {
+  box-shadow: 5px 5px 15px blue;
+}
+.box .pack-set .pack:nth-child(6n+4) {
+  box-shadow: 5px 5px 15px white;
+}
+.box .pack-set .pack:nth-child(6n+5) {
+  box-shadow: 5px 5px 15px #666;
 }
 .box .pack-set .pack:hover {
   box-shadow: 0px 0px 30px #ffdf00;
@@ -868,6 +905,37 @@ body {
 }
 .box .pack-set .pack li.GU::before {
   background-image: linear-gradient(green, blue);
+}
+.box .pack-set .pack li.GWU::before, .box .pack-set .pack li.GUW::before {
+  background-image: linear-gradient(green, white, blue);
+}
+.box .pack-set .pack li.BRU::before {
+  background-image: linear-gradient(black, red, blue);
+}
+.box .pack-set .pack li.GRW::before {
+  background-image: linear-gradient(red, green, white);
+}
+.box .pack-set .pack li.BGR::before {
+  background-image: linear-gradient(black, green, red);
+}
+.box .pack-set .pack li.BUW::before {
+  background-image: linear-gradient(black, blue, white);
+}
+
+.add-more, .packForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.add-more .packForm, .packForm .packForm {
+  flex-direction: row;
+  align-content: space-between;
+}
+.add-more .packForm button, .packForm .packForm button {
+  margin: 0 20px;
+}
+.add-more span, .packForm span {
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */
