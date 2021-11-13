@@ -7,9 +7,11 @@ window.onload = function(){
 	sessionStorage.clear();
 }
 
+var isReset = false;
+
 function makePools(setData) {
-	
-	//Set up our card template from which we will build all our cards
+
+//Set up our card template from which we will build all our cards
 	//Card JavaScript object
 	const CardObj = function(data) {
 		const cardName = data.name;
@@ -32,7 +34,7 @@ function makePools(setData) {
 	for(let i = 0; i < cardList.length - 1; i++) {
 		//sort out basic lands
 		if(cardList[i].supertypes[0] !== "Basic") {
-			let newCard = new CardObj(cardList[i])
+			let newCard = new CardObj(cardList[i]);
 			cardSet.push(newCard);
 		}
 	}
@@ -111,6 +113,7 @@ function makePools(setData) {
 			}
 		}
 	}
+	
 	if(boosterData.dfc != null) {
 		sessionStorage.setItem('cardPoolSFCCommon', JSON.stringify(cardPoolSFCCommon));
 		sessionStorage.setItem('cardPoolSFCUnCommon', JSON.stringify(cardPoolSFCUnCommon));
@@ -132,12 +135,26 @@ function makePools(setData) {
 	}
 }
 
-function determineMaxPacks(isReset) {
+function getPools() {
+	let cardPools = [];
 	
-	let cardPoolSFCCommon = [];
-	let cardPoolSFCUnCommon = [];
-	let cardPoolSFCRareMythic = [];
-	let cardPoolDFC = [];
+	if(isReset) {
+		cardPools.push(JSON.parse(sessionStorage.getItem('originalCardPoolSFCCommon')));
+		cardPools.push(JSON.parse(sessionStorage.getItem('originalCardPoolSFCUnCommon')));
+		cardPools.push(JSON.parse(sessionStorage.getItem('originalCardPoolSFCRareMythic')));
+		cardPools.push(JSON.parse(sessionStorage.getItem('originalCardPoolDFC')));
+	} else {
+		cardPools.push(JSON.parse(sessionStorage.getItem('cardPoolSFCCommon')));
+		cardPools.push(JSON.parse(sessionStorage.getItem('cardPoolSFCUnCommon')));
+		cardPools.push(JSON.parse(sessionStorage.getItem('cardPoolSFCRareMythic')));
+		cardPools.push(JSON.parse(sessionStorage.getItem('cardPoolDFC')));
+	}
+	
+	return cardPools;
+}
+
+function determineMaxPacks() {
+	
 	let numCommons = sessionStorage.getItem('numCommons');
 	let numUnCommons = sessionStorage.getItem('numUnCommons');
 	let numRareMythic = sessionStorage.getItem('numRareMythic');
@@ -145,46 +162,27 @@ function determineMaxPacks(isReset) {
 	let maxPacksArr = [];
 	let maxPacks = 0;
 
+	//get our pools from session
+	let cardPools = getPools();
 	
-	if(isReset) {
-		cardPoolSFCCommon = JSON.parse(sessionStorage.getItem('originalCardPoolSFCCommon'));
-		cardPoolSFCUnCommon = JSON.parse(sessionStorage.getItem('originalCardPoolSFCUnCommon'));
-		cardPoolSFCRareMythic = JSON.parse(sessionStorage.getItem('originalCardPoolSFCRareMythic'));
-		cardPoolDFC = JSON.parse(sessionStorage.getItem('originalCardPoolDFC'));
-	} else {
-		cardPoolSFCCommon = JSON.parse(sessionStorage.getItem('cardPoolSFCCommon'));
-		cardPoolSFCUnCommon = JSON.parse(sessionStorage.getItem('cardPoolSFCUnCommon'));
-		cardPoolSFCRareMythic = JSON.parse(sessionStorage.getItem('cardPoolSFCRareMythic'));
-		cardPoolDFC = JSON.parse(sessionStorage.getItem('cardPoolDFC'));
-	}
-	
-	maxPacksArr.push(Math.trunc(cardPoolSFCCommon.length/numCommons));
-	maxPacksArr.push(Math.trunc(cardPoolSFCUnCommon.length/numUnCommons));
-	maxPacksArr.push(Math.trunc(cardPoolSFCRareMythic.length/numRareMythic));
-	if(numDFC === null) maxPacksArr.push(Math.trunc(cardPoolDFC.length/numDFC));
+	maxPacksArr.push(Math.trunc(cardPools[0].length/numCommons));
+	maxPacksArr.push(Math.trunc(cardPools[1]./*cardPoolSFCUnCommon.*/length/numUnCommons));
+	maxPacksArr.push(Math.trunc(cardPools[2]./*cardPoolSFCRareMythic.*/length/numRareMythic));
+	if(numDFC === null) maxPacksArr.push(Math.trunc(cardPools[3]./*cardPoolDFC.*/length/numDFC));
 	maxPacks = Math.min.apply(Math, maxPacksArr);
 	sessionStorage.setItem('maxPacksOriginal', JSON.stringify(maxPacks));
 	sessionStorage.setItem('maxPacksCounter', JSON.stringify(maxPacks));
 }
 
-function makePacks(num, isReset) {	
-	//Get the data from session storage
-	let cardPoolSFCCommon = [];
-	let cardPoolSFCUnCommon = [];
-	let cardPoolSFCRareMythic = [];
-	let cardPoolDFC = [];
+function makePacks(num) {	
 	
-	if(isReset) {
-		cardPoolSFCCommon = JSON.parse(sessionStorage.getItem('originalCardPoolSFCCommon'));
-		cardPoolSFCUnCommon = JSON.parse(sessionStorage.getItem('originalCardPoolSFCUnCommon'));
-		cardPoolSFCRareMythic = JSON.parse(sessionStorage.getItem('originalCardPoolSFCRareMythic'));
-		cardPoolDFC = JSON.parse(sessionStorage.getItem('originalCardPoolDFC'));
-	} else {
-		cardPoolSFCCommon = JSON.parse(sessionStorage.getItem('cardPoolSFCCommon'));
-		cardPoolSFCUnCommon = JSON.parse(sessionStorage.getItem('cardPoolSFCUnCommon'));
-		cardPoolSFCRareMythic = JSON.parse(sessionStorage.getItem('cardPoolSFCRareMythic'));
-		cardPoolDFC = JSON.parse(sessionStorage.getItem('cardPoolDFC'));
-	}
+	//get our pools from session
+	let cardPools = getPools();
+	
+	let cardPoolSFCCommon = cardPools[0];
+	let cardPoolSFCUnCommon = cardPools[1];
+	let cardPoolSFCRareMythic = cardPools[2];
+	let cardPoolDFC = cardPools[3];
 	
 	let maxPacks = 0;
 	let numCommons = sessionStorage.getItem('numCommons');
@@ -194,10 +192,18 @@ function makePacks(num, isReset) {
 	
 	//Determine max number of packs
 	//Maximum number of packs possible
-	if(isReset === true) {
+	if(isReset == true) {
 		maxPacks = sessionStorage.getItem('maxPacksOriginal');
 	} else {
 		maxPacks = JSON.parse(sessionStorage.getItem('maxPacksCounter'));
+	}
+	
+	if(maxPacks === 1) {
+		numPacks = 1;
+	} else if(maxPacks === 0) {
+		return false;
+	} else {
+		numPacks = num;
 	}
 	
 	let box = [];
@@ -206,13 +212,7 @@ function makePacks(num, isReset) {
 	}
 	
 	//How many packs to make in the box
-	if(maxPacks === 1) {
-		var numPacks = 1;
-	} else if(maxPacks === 0) {
-		return false;
-	} else {
-		var numPacks = num;
-	}
+	let numPacks = 0;
 	
 	//Function that pulls a random card	
 	function randomCard(pool, pack) {
@@ -241,7 +241,7 @@ function makePacks(num, isReset) {
 			
 		} while (!unique);
 		
-		return uniqueCard;
+		return 	uniqueCard;
 		
 	}
 	
@@ -272,9 +272,11 @@ function makePacks(num, isReset) {
 		box.push(cardPack);
 	}
 	
+	console.log(box);
+	
 	//Update the pools in the session
 	sessionStorage.setItem('cardPoolSFCCommon', JSON.stringify(cardPoolSFCCommon));
-	sessionStorage.setItem('cardPoolSFCUnCommon', JSON.stringify(cardPoolSFCUnCommon));
+	sessionStorage.setItem('cardPoolSFCUnCommon', JSON.stringify(cardPoolSFCUnCommon));	
 	sessionStorage.setItem('cardPoolSFCRareMythic', JSON.stringify(cardPoolSFCRareMythic));
 	sessionStorage.setItem('cardPoolDFC', JSON.stringify(cardPoolDFC));
 	sessionStorage.setItem('maxPacksCounter', JSON.stringify(maxPacks - numPacks));	
@@ -305,31 +307,6 @@ function ManaCost(props) {
 	return costs.map((cost, i) => <span className={"mtgicons icon-" + cost} key={i}><span className="visually-hidden">{parseCost(cost)}</span><span className="path1"></span><span className="path2"></span></span>);
 }
 
-//React component for our cards
-function Card(props) {
-	const cardClass = [props.colorIdentity, props.rarity];
-	return <li className={cardClass.join(' ')}><span className="name">{props.cardName}</span><ManaCost manaCost={props.manaCost} /></li>;
-}
-
-//React component of our pack
-function Pack(data, packId) {
-	//TODO: Look up useReducer() and see if it's viable replacement for useState()
-	//Receiving warning but it's functioning right now, could be more elegant
-	const [cards, setCards] = useState([]);
-	
-	useEffect(() => {
-		setCards(data.data);
-	})
-	
-	return (
-			<div className="pack">
-				<h2>Pack {data.packId+1}</h2>
-				<ul>
-					{cards.map((card, i) => <Card cardName={card.cardName} colorIdentity={card.colorIdentity} rarity={card.rarity} manaCost={card.manaCost} key={i}/>)}
-				</ul>
-			</div>
-	)
-}
 
 function PackNumSelect() {
 	
@@ -357,6 +334,33 @@ function PackNumSelect() {
 	}
 }
 
+//Keep our React components separate from JS functions
+//React component for our cards
+function Card(props) {
+	const cardClass = [props.colorIdentity, props.rarity];
+	return <li className={cardClass.join(' ')}><span className="name">{props.cardName}</span><ManaCost manaCost={props.manaCost} /></li>;
+}
+
+//React component of our pack
+function Pack(data, packId) {
+	//TODO: Look up useReducer() and see if it's viable replacement for useState()
+	//Receiving warning but it's functioning right now, could be more elegant
+	const [cards, setCards] = useState([]);
+	
+	useEffect(() => {
+		setCards(data.data);
+	})
+	
+	return (
+			<div className="pack">
+				<h2>Pack {data.packId+1}</h2>
+				<ul>
+					{cards.map((card, i) => <Card cardName={card.cardName} colorIdentity={card.colorIdentity} rarity={card.rarity} manaCost={card.manaCost} key={i}/>)}
+				</ul>
+			</div>
+	)
+}
+
 function Box() {
 
 	const [isLoaded, setIsLoaded] = useState(false);
@@ -380,13 +384,16 @@ function Box() {
 	
 	const submitPackNum = (event) => {
 		event.preventDefault();
-		makePacks(event.target.packNumSelect.value, false);
+		isReset = false;
+		makePacks(event.target.packNumSelect.value);
 		setPacks(JSON.parse(sessionStorage.getItem('box')));
 		setSubmitted(true);
 	}
+	
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		makePacks(event.target.more.value, false);
+		isReset = false;
+		makePacks(event.target.more.value);
 		setPacks(JSON.parse(sessionStorage.getItem('box')));
 		if(JSON.parse(sessionStorage.getItem('maxPacksCounter') == 0)) {
 			document.getElementById('submit').disabled = true;
@@ -395,6 +402,7 @@ function Box() {
 	
 	const handleReset = (event) => {
 		event.preventDefault();
+		isReset = true;
 		sessionStorage.removeItem('box');
 		setSubmitted(false);
 		document.getElementById('submit').disabled = false;
