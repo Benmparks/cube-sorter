@@ -741,20 +741,21 @@ body {
   justify-content: center;
   flex-direction: column;
 }
-@keyframes fadeInAnimation {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
 button {
   padding: 20px;
   border-radius: 15px;
   font-size: 2rem;
   margin: 0 20%;
+  background: #333;
+  color: white;
+}
+button:hover {
+  box-shadow: 0px 0px 30px #ffdf00;
+}
+button:disabled {
+  background: #666;
+  color: #fff;
 }
 
 .box {
@@ -812,6 +813,14 @@ button {
   padding: 15px;
   background: #fff;
   transition: box-shadow 0.3s ease-in-out;
+}
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 @media (max-width: 820px) {
   .box .pack-set .pack {
@@ -938,6 +947,7 @@ button {
 }
 .add-more span, .packForm span {
   text-align: center;
+  color: white;
 }
 
 /*# sourceMappingURL=style.css.map */

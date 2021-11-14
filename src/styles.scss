@@ -32,15 +32,6 @@ body {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	
-	@keyframes fadeInAnimation {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-		 }
-	}
 }
 
 button {
@@ -48,6 +39,17 @@ button {
 	border-radius: $border-radius;
 	font-size: 2rem;
 	margin: 0 20%;
+	background: $primary-color;
+	color: $white;
+		
+			&:hover {
+				box-shadow: 0px 0px 30px $gold;
+			}
+			
+			&:disabled {
+				background: $light-gray;
+				color: #fff;			
+			}
 }
 
 .box {
@@ -116,6 +118,16 @@ button {
 			padding: 15px;
 			background: #fff;
 			transition: box-shadow 0.3s ease-in-out;
+
+			@keyframes fadeInAnimation {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+					 }
+				}
+
 			
 			@media (max-width: $medium) {
 				width: 80vw;
@@ -124,7 +136,6 @@ button {
 			@media (min-width: $large) {
 				width: 27vw;
 			}
-			
 			
 			&:nth-child(6n) {
 				box-shadow: 5px 5px 15px $red;
@@ -277,5 +288,6 @@ button {
 		
 		span {
 			text-align: center;
+			color: $white;
 		}
 }

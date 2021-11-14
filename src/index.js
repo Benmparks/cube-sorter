@@ -203,6 +203,8 @@ function makePacks(num) {
 		numPacks = 1;
 	} else if(maxPacks === 0) {
 		return false;
+	} else if(maxPacks < num) {
+		numPacks = maxPacks;
 	} else {
 		numPacks = num;
 	}
@@ -392,6 +394,7 @@ function Box() {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [numSelect, setNumSelect] = useState(null);
 	const [formSubmitted, setSubmitted] = useState(false);
+	const [maxPacksReached, setMaxPacksReached] = useState(false);
 	const [packs, setPacks] = useState([]);
 	const setArr = ['./ALA.json', './RTR.json', 'ISD.json'];
 
@@ -421,6 +424,8 @@ function Box() {
 		makePacks(event.target.packNumSelect.value);
 		setPacks(JSON.parse(sessionStorage.getItem('box')));
 		setSubmitted(true);
+		checkMaxPacks();
+
 	}
 	
 	const handleSubmit = (event) => {
@@ -428,13 +433,20 @@ function Box() {
 		makePacks(event.target.more.value);
 		isReset = false;
 		setPacks(JSON.parse(sessionStorage.getItem('box')));
-		if(JSON.parse(sessionStorage.getItem('maxPacksCounter') == 0)) {
-			document.getElementById('submit').disabled = true;
-		}
+		checkMaxPacks();
 	}
 	
 	const getCallBack = (boolean) => {
 		setNumSelect(JSON.parse(sessionStorage.getItem('maxPacksCounter')));
+	}
+	
+	const checkMaxPacks = () => {
+		const maxPacks = parseInt(JSON.parse(sessionStorage.getItem('maxPacksCounter')));
+		if(maxPacks === 0) {
+			setMaxPacksReached(true);
+		} else {
+			setMaxPacksReached(false);
+		}
 	}
 	
 	const handleReset = (event) => {
@@ -446,7 +458,18 @@ function Box() {
 		sessionStorage.removeItem('maxPacksOriginal');
 		setNumSelect(0);
 		setSubmitted(false);
-		document.getElementById('submit').disabled = false;
+		checkMaxPacks();
+	}
+	
+	const handleSeeAll = (event) => {
+		event.preventDefault();
+		
+		const maxPacks = parseInt(JSON.parse(sessionStorage.getItem('maxPacksCounter')));
+		console.log(maxPacks);
+		
+		makePacks(maxPacks);
+		setPacks(JSON.parse(sessionStorage.getItem('box')));
+		checkMaxPacks();		
 	}
 	
 	if ((!isLoaded) && (!formSubmitted)) {
@@ -483,8 +506,9 @@ function Box() {
 				<div className="add-more">
 					<form name="morePacks" onSubmit={handleSubmit} className="packForm" id="packForm">
 						<input type="hidden" name="more" id="more" value="3" />
-						<button type="button" onClick={handleReset} name="reset" id="resetButton">Reset</button>						
-						<button type="submit" name="submit" id="submit">Make More!</button>
+						<button type="button" onClick={handleReset} name="reset" id="resetButton">Reset</button>
+						<button type="button" onClick={handleSeeAll} name="seeAll" id="seeAll" disabled={maxPacksReached}>See All</button>						
+						<button type="submit" name="submit" id="submit" disabled={maxPacksReached}>Make More!</button>
 					</form>
 					<span className="remaining">Remaining Packs: {JSON.parse(sessionStorage.getItem('maxPacksCounter'))}</span>
 				</div>
