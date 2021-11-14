@@ -84,13 +84,16 @@ button {
 			justify-content: center;
 			flex-direction: column;
 		
-			.packSelect {
+			div {
 				margin-bottom: 20px;
 				
-				.packNumSelect {
+				select {
 					padding: 2px;
 					margin-left: 10px;
+					border-radius: 5px;
+					font-size: 1.2rem;
 				}
+
 			}
 		}
 	}

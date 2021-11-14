@@ -786,12 +786,14 @@ button {
   justify-content: center;
   flex-direction: column;
 }
-.box .form-container .numPacks .packSelect {
+.box .form-container .numPacks div {
   margin-bottom: 20px;
 }
-.box .form-container .numPacks .packSelect .packNumSelect {
+.box .form-container .numPacks div select {
   padding: 2px;
   margin-left: 10px;
+  border-radius: 5px;
+  font-size: 1.2rem;
 }
 .box .pack-set {
   width: 100%;

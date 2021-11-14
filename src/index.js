@@ -29,7 +29,7 @@ function makePools(setData) {
 	
 	//Build every card from the list
 	var cardSet = [];
-	var cardList = setData.data.cards;
+	var cardList = setData.cards;
 		
 	for(let i = 0; i < cardList.length - 1; i++) {
 		//sort out basic lands
@@ -54,7 +54,7 @@ function makePools(setData) {
 	let cardPoolDFC = [];
 	
 	//Save info about the boosters in the session so we have access to it later
-	const boosterData = setData.data.booster.default.boosters[0].contents;
+	const boosterData = setData.booster.default.boosters[0].contents;
 	if(boosterData.dfc != null) {
 		sessionStorage.setItem('numCommons', boosterData.sfcCommon);
 		sessionStorage.setItem('numUnCommons', boosterData.sfcUncommon);
@@ -185,6 +185,7 @@ function makePacks(num) {
 	let cardPoolDFC = cardPools[3];
 	
 	let maxPacks = 0;
+	let numPacks = 0;
 	let numCommons = sessionStorage.getItem('numCommons');
 	let numUnCommons = sessionStorage.getItem('numUnCommons');
 	let numRareMythic = sessionStorage.getItem('numRareMythic');
@@ -192,7 +193,7 @@ function makePacks(num) {
 	
 	//Determine max number of packs
 	//Maximum number of packs possible
-	if(isReset == true) {
+	if(isReset === true) {
 		maxPacks = sessionStorage.getItem('maxPacksOriginal');
 	} else {
 		maxPacks = JSON.parse(sessionStorage.getItem('maxPacksCounter'));
@@ -210,9 +211,6 @@ function makePacks(num) {
 	if(sessionStorage.getItem('box') !== null) {
 		box = JSON.parse(sessionStorage.getItem('box'));
 	}
-	
-	//How many packs to make in the box
-	let numPacks = 0;
 	
 	//Function that pulls a random card	
 	function randomCard(pool, pack) {
@@ -272,8 +270,6 @@ function makePacks(num) {
 		box.push(cardPack);
 	}
 	
-	console.log(box);
-	
 	//Update the pools in the session
 	sessionStorage.setItem('cardPoolSFCCommon', JSON.stringify(cardPoolSFCCommon));
 	sessionStorage.setItem('cardPoolSFCUnCommon', JSON.stringify(cardPoolSFCUnCommon));	
@@ -307,10 +303,44 @@ function ManaCost(props) {
 	return costs.map((cost, i) => <span className={"mtgicons icon-" + cost} key={i}><span className="visually-hidden">{parseCost(cost)}</span><span className="path1"></span><span className="path2"></span></span>);
 }
 
-
-function PackNumSelect() {
+function SetSelect(props) {
+	const cardSets = JSON.parse(sessionStorage.getItem('totalCardSets'));
 	
-	const maxPacks = JSON.parse(sessionStorage.getItem('maxPacksCounter'));
+	const handleChange = (event) => {
+		console.log(event.target.value);
+		
+		let emptyOption = document.getElementById("emptyOption");
+		
+		if(emptyOption !== null) {
+			emptyOption.remove();
+		}
+		
+		makePools(JSON.parse(sessionStorage.getItem(event.target.value)));
+		determineMaxPacks();
+		props.callBack();
+	} 
+		
+	if(cardSets !== null) {
+		return (
+			<div className="setSelect">
+				<label htmlFor="cardSetSelect">What set do you want to make packs for?</label>
+				<select className="cardSetSelect" id="cardSetSelect" onChange={handleChange}>
+					<option id="emptyOption"> </option>
+					{cardSets.map((cardSet, i) => <option value={cardSet.setCode} key={i}>{cardSet.setName}</option>)}
+				</select>
+			</div>
+		)
+	} else {
+		return (
+			<div className="cardSetSelect">
+				No sets to load
+			</div>
+		)
+	}
+}
+
+function PackNumSelect(props) {
+	let maxPacks = 	props.num;
 	if(maxPacks > 0) {
 		let minPacks = 1;
 		let packSelect = Array(maxPacks).fill()
@@ -345,11 +375,7 @@ function Card(props) {
 function Pack(data, packId) {
 	//TODO: Look up useReducer() and see if it's viable replacement for useState()
 	//Receiving warning but it's functioning right now, could be more elegant
-	const [cards, setCards] = useState([]);
-	
-	useEffect(() => {
-		setCards(data.data);
-	})
+	const cards = data.data;
 	
 	return (
 			<div className="pack">
@@ -364,27 +390,34 @@ function Pack(data, packId) {
 function Box() {
 
 	const [isLoaded, setIsLoaded] = useState(false);
+	const [numSelect, setNumSelect] = useState(null);
 	const [formSubmitted, setSubmitted] = useState(false);
 	const [packs, setPacks] = useState([]);
+	const setArr = ['./ALA.json', './RTR.json', 'ISD.json'];
 
+	//Use the event hook to load our JSON on load
 	useEffect(() => {
-		fetch("./ALA.json", {method: 'get'})
-		.then(response => response.json())
-		.then(
-			(result) => {
-				makePools(result);
-				determineMaxPacks();
-		}).then((result) => {
-			 setIsLoaded(true);
-		}).catch(error => {
-			console.log("Error!"); 
-			console.log(error);
-		})
-	}, [])
+		let totalCardSets = [];
+		Promise.all(
+		setArr.map(url =>
+			fetch(url, {method: 'get'})
+			.then(response => response.json())
+			.then(
+				(result) => {
+					totalCardSets.push({"setCode": result.data.code, "setName": result.data.mcmName});
+					sessionStorage.setItem(result.data.code, JSON.stringify(result.data));
+			}).catch(error => {
+				console.log("Error!"); 
+				console.log(error);
+			})
+		)).then(result => {
+			sessionStorage.setItem('totalCardSets', JSON.stringify(totalCardSets));
+			setIsLoaded(true);
+		});
+	})
 	
 	const submitPackNum = (event) => {
 		event.preventDefault();
-		isReset = false;
 		makePacks(event.target.packNumSelect.value);
 		setPacks(JSON.parse(sessionStorage.getItem('box')));
 		setSubmitted(true);
@@ -392,18 +425,26 @@ function Box() {
 	
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		isReset = false;
 		makePacks(event.target.more.value);
+		isReset = false;
 		setPacks(JSON.parse(sessionStorage.getItem('box')));
 		if(JSON.parse(sessionStorage.getItem('maxPacksCounter') == 0)) {
 			document.getElementById('submit').disabled = true;
 		}
 	}
 	
+	const getCallBack = (boolean) => {
+		setNumSelect(JSON.parse(sessionStorage.getItem('maxPacksCounter')));
+	}
+	
 	const handleReset = (event) => {
 		event.preventDefault();
 		isReset = true;
+		console.log(isReset);
 		sessionStorage.removeItem('box');
+		sessionStorage.removeItem('maxPacksCounter');
+		sessionStorage.removeItem('maxPacksOriginal');
+		setNumSelect(0);
 		setSubmitted(false);
 		document.getElementById('submit').disabled = false;
 	}
@@ -424,7 +465,8 @@ function Box() {
 					<p>The problem that I ran into is that if I wanted to use my Innistrad cube it would require some amount of set up to best try to recreate an environment that would be like a retail experience, where you open sealed packs of cards. I wrote this script with the intention of being able to randomize my own packs while eventually being able to more replicate a more retail pack-like environment, such as there being no risk of duplicate cards in the pack.</p>
 					
 					<form name="selectSet" className="numPacks" onSubmit={submitPackNum}>
-						<PackNumSelect />
+						<SetSelect callBack={getCallBack} />
+						<PackNumSelect num={numSelect}/>
 						<button>Let's go!</button>
 					</form>
 				</div>
@@ -439,7 +481,7 @@ function Box() {
 					</div>
 				</div>
 				<div className="add-more">
-					<form name="morePacks" onSubmit={handleSubmit} className="packForm">
+					<form name="morePacks" onSubmit={handleSubmit} className="packForm" id="packForm">
 						<input type="hidden" name="more" id="more" value="3" />
 						<button type="button" onClick={handleReset} name="reset" id="resetButton">Reset</button>						
 						<button type="submit" name="submit" id="submit">Make More!</button>
