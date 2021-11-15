@@ -1,23 +1,8 @@
-import React,{useEffect,useState} from 'react';
-import axios from 'axios';
+import ManaCost from "./ManaCost.js";
 
-const Card=()=> {
-
-	useEffect(()=>{
-		axios.get("./ISD.json")
-		.then(response => {
-			const data = response;
-			console.log(data);
-			
-		}).catch(error => {
-			console.log("Error!"); 
-			console.log(error);
-		}, [])
-	});
-
-	return (
-		<span className="colorIdentity rarity">Name</span>
-	)
+//React component for our cards
+function Card(props) {
+	const cardClass = [props.colorIdentity, props.rarity];
+	return <li className={cardClass.join(' ')}><span className="name">{props.cardName}</span><ManaCost manaCost={props.manaCost} /></li>;
 }
-
 export default Card;

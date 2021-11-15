@@ -1,27 +1,21 @@
 import React from 'react';
+import {useEffect,useState} from 'react';
+import Card from "./Card.js";
 
-class Pack extends React.Component {
-	useEffect(()=>{
-		axios.get("./ISD.json")
-		.then(response => {
-			const data = response;
-			console.log(data);
-		}).catch(error => {
-			console.log("Error!"); 
-			console.log(error);
-		}, [])
-	});
+//React component of our pack
+function Pack(data, packId) {
+	//TODO: Look up useReducer() and see if it's viable replacement for useState()
+	//Receiving warning but it's functioning right now, could be more elegant
+	const cards = data.data;
 	
-	const [cardData,setCardData]=useState([]);
-	const [packData,setPackData]=useState(
-		Card: 
-	);
-
-	render() {
-		return (
+	return (
 			<div className="pack">
-				<Card data="cardData" />
+				<h2>Pack {data.packId+1}</h2>
+				<ul>
+					{cards.map((card, i) => <Card cardName={card.cardName} colorIdentity={card.colorIdentity} rarity={card.rarity} manaCost={card.manaCost} key={i}/>)}
+				</ul>
 			</div>
-		);
-	}
+	)
 }
+
+export default Pack;
