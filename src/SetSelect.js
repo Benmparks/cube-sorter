@@ -1,4 +1,5 @@
 import {makePools, determineMaxPacks} from "./functions.js";
+import {useEffect} from 'react';
 
 function SetSelect(props) {
 	const cardSets = JSON.parse(sessionStorage.getItem('totalCardSets'));
@@ -15,14 +16,19 @@ function SetSelect(props) {
 		makePools(JSON.parse(sessionStorage.getItem(event.target.value)));
 		determineMaxPacks();
 		props.callBack();
-	} 
+	}
+	
+	useEffect(() => {
+		makePools(JSON.parse(sessionStorage.getItem(document.getElementById("cardSetSelect").value)));
+		determineMaxPacks();
+		props.callBack();
+	})
 		
 	if(cardSets !== null) {
 		return (
 			<div className="setSelect">
 				<label htmlFor="cardSetSelect">What set do you want to make packs for?</label>
 				<select className="cardSetSelect" id="cardSetSelect" onChange={handleChange}>
-					<option id="emptyOption"> </option>
 					{cardSets.map((cardSet, i) => <option value={cardSet.setCode} key={i}>{cardSet.setName}</option>)}
 				</select>
 			</div>

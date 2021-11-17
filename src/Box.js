@@ -3,9 +3,8 @@ import "./functions.js";
 import Pack from "./Pack.js";
 import PackNumSelect from "./PackNumSelect.js";
 import SetSelect from "./SetSelect.js";
+import RemainingPacks from "./RemainingPacks.js";
 import makePacks from "./functions.js";
-
-var isReset = false;
 
 function Box() {
 
@@ -39,6 +38,7 @@ function Box() {
 	
 	const submitPackNum = (event) => {
 		event.preventDefault();
+		sessionStorage.removeItem('box');
 		makePacks(event.target.packNumSelect.value);
 		setPacks(JSON.parse(sessionStorage.getItem('box')));
 		setSubmitted(true);
@@ -49,8 +49,8 @@ function Box() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		makePacks(event.target.more.value);
-		isReset = false;
-		setPacks(JSON.parse(sessionStorage.getItem('box')));
+		sessionStorage.removeItem('box');
+		sessionStorage.removeItem('maxPacksCounter');
 		checkMaxPacks();
 	}
 	
@@ -69,11 +69,6 @@ function Box() {
 	
 	const handleReset = (event) => {
 		event.preventDefault();
-		isReset = true;
-		console.log(isReset);
-		sessionStorage.removeItem('box');
-		sessionStorage.removeItem('maxPacksCounter');
-		sessionStorage.removeItem('maxPacksOriginal');
 		setNumSelect(0);
 		setSubmitted(false);
 		checkMaxPacks();
@@ -126,7 +121,7 @@ function Box() {
 						<button type="button" onClick={handleSeeAll} name="seeAll" id="seeAll" disabled={maxPacksReached}>See All</button>						
 						<button type="submit" name="submit" id="submit" disabled={maxPacksReached}>Make More!</button>
 					</form>
-					<span className="remaining">Remaining Packs: {JSON.parse(sessionStorage.getItem('maxPacksCounter'))}</span>
+					<RemainingPacks />
 				</div>
 			</div>
 		)

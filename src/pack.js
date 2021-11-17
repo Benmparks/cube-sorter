@@ -1,5 +1,4 @@
 import React from 'react';
-import {useEffect,useState} from 'react';
 import Card from "./Card.js";
 
 //React component of our pack
