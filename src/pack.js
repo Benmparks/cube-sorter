@@ -11,7 +11,7 @@ function Pack(data, packId) {
 			<div className="pack">
 				<h2>Pack {data.packId+1}</h2>
 				<ul>
-					{cards.map((card, i) => <Card cardName={card.cardName} colorIdentity={card.colorIdentity} rarity={card.rarity} manaCost={card.manaCost} key={i}/>)}
+					{cards.map((card, i) => <Card cardName={card.cardName} colorIdentity={card.colorIdentity} rarity={card.rarity} manaCost={card.manaCost} type={card.type} text={card.text} key={i}/>)}
 				</ul>
 			</div>
 	)

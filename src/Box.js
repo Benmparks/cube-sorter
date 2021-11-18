@@ -1,5 +1,4 @@
 import {useEffect,useState} from 'react';
-import "./functions.js";
 import Pack from "./Pack.js";
 import PackNumSelect from "./PackNumSelect.js";
 import SetSelect from "./SetSelect.js";
@@ -34,11 +33,20 @@ function Box() {
 			sessionStorage.setItem('totalCardSets', JSON.stringify(totalCardSets));
 			setIsLoaded(true);
 		});
+		
+		const clearData = () => {
+			sessionStorage.clear();
+		}
+		
+		window.addEventListener("beforeunload", clearData);
+		return () => {
+			window.removeEventListener("beforeunload", clearData);
+		}
+		
 	})
 	
 	const submitPackNum = (event) => {
 		event.preventDefault();
-		sessionStorage.removeItem('box');
 		makePacks(event.target.packNumSelect.value);
 		setPacks(JSON.parse(sessionStorage.getItem('box')));
 		setSubmitted(true);
@@ -48,9 +56,9 @@ function Box() {
 	
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		console.log(event.target.more.value);
 		makePacks(event.target.more.value);
-		sessionStorage.removeItem('box');
-		sessionStorage.removeItem('maxPacksCounter');
+		setPacks(JSON.parse(sessionStorage.getItem('box')));
 		checkMaxPacks();
 	}
 	
@@ -69,6 +77,8 @@ function Box() {
 	
 	const handleReset = (event) => {
 		event.preventDefault();
+		sessionStorage.removeItem('box');
+		sessionStorage.removeItem('maxPacksCounter');
 		setNumSelect(0);
 		setSubmitted(false);
 		checkMaxPacks();

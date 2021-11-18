@@ -13,7 +13,6 @@ function SetSelect(props) {
 			emptyOption.remove();
 		}
 		
-		makePools(JSON.parse(sessionStorage.getItem(event.target.value)));
 		determineMaxPacks();
 		props.callBack();
 	}

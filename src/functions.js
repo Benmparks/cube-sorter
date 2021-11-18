@@ -157,9 +157,13 @@ export function makePools(setData) {
 		const manaCost = data.manaCost;
 		const manaValue = data.manaValue;
 		const number = data.number;
+		const power = data.power;
 		const rarity = data.rarity;
+		const text = data.text;
+		const toughness = data.toughness;
+		const type = data.type;
 		const types = data.types;
-		return {cardName, colors, colorIdentity, convertedManaCost, frameEffects, manaCost, manaValue, number, rarity, types};
+		return {cardName, colors, colorIdentity, convertedManaCost, frameEffects, manaCost, manaValue, number, power, rarity, text, toughness, type, types};
 	}
 	
 	//Build every card from the list
